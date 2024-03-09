@@ -6,8 +6,8 @@
 // single entity containing both of them
 //- Module IOs ----------------------------------------------------------------
 module sub_per(
-    output wire[63:0] data_o,
-    input  wire[63:0] data_i
+    output [63:0] data_o,
+    input [63:0] data_i
     );
 
 //- Variables, Registers and Parameters ---------------------------------------

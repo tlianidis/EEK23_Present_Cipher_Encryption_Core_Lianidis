@@ -7,8 +7,8 @@
 // this module implements those 16 S-Boxes using the sbox module
 //- Module IOs ----------------------------------------------------------------
 module substitution(
-    output wire [63:0] data_o,
-    input  wire [63:0 data_i
+    output [63:0] data_o,
+    input [63:0] data_i
     ); 
 
 //- Variables, Registers and Parameters ---------------------------------------

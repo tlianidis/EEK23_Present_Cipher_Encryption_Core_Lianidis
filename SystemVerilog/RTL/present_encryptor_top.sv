@@ -4,13 +4,12 @@
 
 //- Module IOs ----------------------------------------------------------------
 module present_encryptor_top(
-    output wire[63:0] data_o,    // ciphertext will appear here
-    input  wire[79:0] data_i,    // plaintext and key must be fed here
-    input  wire data_load,       // when '1', first 64 bits of data_i will be loaded into state register
-    input  wire key_load,       // when '1', data_i will be loaded into key register
-    input  wire clk_i            // clock signal
+    output [63:0] data_o,    // ciphertext will appear here
+    input [79:0] data_i,    // plaintext and key must be fed here
+    input data_load,       // when '1', first 64 bits of data_i will be loaded into state register
+    input key_load,       // when '1', data_i will be loaded into key register
+    input clk_i            // clock signal
     );
-
 
 //- Variables, Registers and Parameters ---------------------------------------
 

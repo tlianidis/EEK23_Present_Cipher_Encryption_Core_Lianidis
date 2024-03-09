@@ -5,7 +5,7 @@
 //- Module IOs ----------------------------------------------------------------
 module sbox (
     output logic [3:0] data_o,
-    input  wire [3:0] data_i
+    input [3:0] data_i
     );
 
 //- Procedural Assignments------------------------------------------------------

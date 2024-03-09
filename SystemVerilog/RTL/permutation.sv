@@ -5,8 +5,8 @@
 
 //- Module IOs ----------------------------------------------------------------
 module permutation(
-    output wire[63:0] data_o,
-    input  wire[63:0] data_i
+    output [63:0] data_o,
+    input  [63:0] data_i
     );
 
 //- Continuous Assignments------------------------------------------------------
