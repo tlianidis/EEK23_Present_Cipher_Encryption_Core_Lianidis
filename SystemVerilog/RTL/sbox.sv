@@ -2,13 +2,11 @@
 // Module Name: sbox                                              //
 // Language:    SystemVerilog                                     //
 
-
-module sbox (data_o,data_i);
-
 //- Module IOs ----------------------------------------------------------------
-
-output logic [3:0] data_o;
-input  wire [3:0] data_i;
+module sbox (
+    output logic [3:0] data_o,
+    input  wire [3:0] data_i
+    );
 
 //- Procedural Assignments------------------------------------------------------
 

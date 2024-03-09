@@ -2,14 +2,12 @@
 // Module Name: key_update                                        //
 // Language:    SystemVerilog                                     //
 
-
-module key_update(data_o,data_i,round_counter);
-
 //- Module IOs ----------------------------------------------------------------
-
-output wire[79 : 0] data_o; // 80-bit output (will be the updated value of current key)
-input  wire[79 : 0] data_i; // 80-bit input 
-input  wire[4  : 0] round_counter;
+module key_update(
+    output wire[79 : 0] data_o,     // 80-bit output (will be the updated value of current key)
+    input  wire[79 : 0] data_i,     // 80-bit input
+    input  wire[4  : 0] round_counter
+    );
 
 //- Variables, Registers and Parameters ---------------------------------------
 

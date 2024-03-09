@@ -2,14 +2,13 @@
 // Module Name: sub_per                                           //
 // Language:    SystemVerilog                                     //
 
-
-module sub_per(data_o,data_i); // this module cascades the substitution and permutation layers of the cipher and builds a 
-                               // single entity containing both of them
-
+// this module cascades the substitution and permutation layers of the cipher and builds a 
+// single entity containing both of them
 //- Module IOs ----------------------------------------------------------------
-
-output wire[63:0] data_o;
-input  wire[63:0] data_i;              
+module sub_per(
+    output wire[63:0] data_o,
+    input  wire[63:0] data_i
+    );
 
 //- Variables, Registers and Parameters ---------------------------------------
 

@@ -3,13 +3,11 @@
 // Module Name: permutation                                       //
 // Language:    SystemVerilog                                     //
 
-
-module permutation(data_o,data_i);
-
 //- Module IOs ----------------------------------------------------------------
-
-output wire[63:0] data_o;
-input  wire[63:0] data_i;
+module permutation(
+    output wire[63:0] data_o,
+    input  wire[63:0] data_i
+    );
 
 //- Continuous Assignments------------------------------------------------------
 

@@ -3,13 +3,13 @@
 // Language:    SystemVerilog                                     //
 
 
-module substitution(data_o,data_i); // Present cipher uses 16 S-Boxes in parallel to process the data
-                                    // this module implements those 16 S-Boxes using the sbox module
-
+// Present cipher uses 16 S-Boxes in parallel to process the data
+// this module implements those 16 S-Boxes using the sbox module
 //- Module IOs ----------------------------------------------------------------
-
-output wire [63:0] data_o;
-input  wire [63:0] data_i;
+module substitution(
+    output wire [63:0] data_o,
+    input  wire [63:0 data_i
+    ); 
 
 //- Variables, Registers and Parameters ---------------------------------------
 
