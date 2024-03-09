@@ -16,8 +16,8 @@ wire [63:0] s; // intermediate signal
 
 //- Instantiations ------------------------------------------------------------
 
-substitution sub_per_substitution(.data_o(s)   ,.data_i(data_i)); // input of the S-Box is data_i
-permutation  sub_per_permutation (.data_o(data_o),.data_i(s)); // output of Permutation layer is data_o
+substitution sub_per_substitution(.data_o(s)   ,.*); // input of the S-Box is data_i
+permutation  sub_per_permutation (.*,.data_i(s)); // output of Permutation layer is data_o
 
 //-----------------------------------------------------------------------------
 endmodule
