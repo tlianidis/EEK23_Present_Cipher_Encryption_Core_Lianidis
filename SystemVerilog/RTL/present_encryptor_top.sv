@@ -14,9 +14,9 @@ input  wire data_load; // when '1', first 64 bits of data_i will be loaded into 
 
 //- Variables, Registers and Parameters ---------------------------------------
 
-reg  [63 : 0] state; // 64-bit state of the cipher
-reg  [4  : 0] round_counter; // 5-bit round-counter (from 1 to 31)
-reg  [79 : 0] key; // 80-bit register holding the key and updates of the key
+logic  [63 : 0] state; // 64-bit state of the cipher
+logic  [4  : 0] round_counter; // 5-bit round-counter (from 1 to 31)
+logic  [79 : 0] key; // 80-bit register holding the key and updates of the key
 
 wire [63 : 0] round_key; // 64-bit round-key. The round-keys are derived from the key register
 wire [63 : 0] sub_per_input; // 64-bit input to the substitution-permutation network

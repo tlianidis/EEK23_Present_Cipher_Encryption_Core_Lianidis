@@ -8,10 +8,10 @@
 module present_encryptor_top_tb;
 //- Variables, Registers and Parameters ---------------------------------------
 wire [63:0] data_o;
-reg  [79:0] data_i;
-reg  data_load;
-reg  key_load;
-reg  clk_i;
+logic  [79:0] data_i;
+logic  data_load;
+logic  key_load;
+logic  clk_i;
 //- Instantiations ------------------------------------------------------------
 present_encryptor_top UUT (.data_o(data_o),.data_i(data_i),.data_load(data_load),.key_load(key_load),.clk_i(clk_i));
 //- Behavioral Modelling -----------------------------------------------------
