@@ -13,7 +13,7 @@ logic data_load;
 logic key_load;
 logic clk_i;
 //- Instantiations ------------------------------------------------------------
-present_encryptor_top UUT (.*);
+present_encryptor_top DUT (.*);
 //- Behavioral Modelling -----------------------------------------------------
 initial
 begin
