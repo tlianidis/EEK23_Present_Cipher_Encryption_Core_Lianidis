@@ -18,7 +18,7 @@ genvar j;
 //- Instantiations ------------------------------------------------------------
 
 generate
-    for (j = 0; j < 16; j = j+1)
+    for (j = 0; j < 16; j++)
     begin : boxes
         sbox substitution_sbox (.data_o(data_o[j*4+3 : j*4]),.data_i(data_i[j*4+3 : j*4]));    
     end
