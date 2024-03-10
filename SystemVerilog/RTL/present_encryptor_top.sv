@@ -13,9 +13,12 @@ module present_encryptor_top(
 
 //- Variables, Registers and Parameters ---------------------------------------
 
-logic  [63 : 0] state; // 64-bit state of the cipher
-logic  [4  : 0] round_counter; // 5-bit round-counter (from 1 to 31)
-logic  [79 : 0] key; // 80-bit register holding the key and updates of the key
+logic [63 : 0] state; // 64-bit state of the cipher in the current clock cycle
+logic [63:0] state_next; // 64-bit state of the cipher in the next clock cycle
+logic [4  : 0] round_counter; // 5-bit round-counter (from 1 to 31) in the current clock cycle
+logic [4  : 0] round_counter_next; // 5-bit round-counter (from 1 to 31) in the next clock cycle
+logic [79 : 0] key; // 80-bit register holding the key and updates of the key in the current clock cycle
+logic [79 : 0] key_next; // 80-bit register holding the key and updates of the key in the next clock cycle
 
 wire [63 : 0] round_key; // 64-bit round-key. The round-keys are derived from the key register
 wire [63 : 0] sub_per_input; // 64-bit input to the substitution-permutation network
@@ -43,26 +46,34 @@ assign data_o = sub_per_input; // the output of the cipher will finally be one o
 
 //- Behavioral Modelling -----------------------------------------------------
 
-always @(posedge clk_i)
+always_ff @(posedge clk_i)               // This always_ff block implements 3 flip-flops
 begin
-    if(key_load) // loading the key
-    begin
-        key <= data_i;
-    end
-    else if(!key_load) // not loading the key
-    begin
-        if(data_load) // loading plaintext
-        begin
-            state <= data_i[63:0];
-            round_counter <= 5'b00001; // round_counter starts from 1 and ends at 31
-        end
-        else if(!data_load) // normal operation (neither loading the key nor loading the plaitext)
-        begin                  
-            round_counter <= round_counter + 1'b1; // round counter is increased by one
-            state <= sub_per_output; // state is updated
-            key <= key_update_output; // key register is updated
-        end
-    end
+    key <= key_next;                      // 1st flip-flop for the key register
+    state <= state_next;                  // 2nd flip-flop for the state register
+    round_counter <= round_counter_next;  //3rd flip-flop for the round_counter
 end
+
+always_comb                    // This always_comb block implements purely combinational logic 
+begin
+    if(key_load)               // Loading the key
+    begin
+        key_next = data_i;
+        state_next = state;
+        round_counter_next = round_counter;
+    end
+    else if (data_load)        // Loading the plaintext and initializing round_counter_next
+    begin
+        key_next = key;
+        state_next = data_i[63:0];
+        round_counter_next = 5'd1;
+    end   
+    else
+    begin                              // Normal operation of the circuit
+        key_next = key_update_output;
+        state_next = sub_per_output;
+        round_counter_next = round_counter + 5'd1;
+    end   
+end
+
 //-----------------------------------------------------------------------------
 endmodule

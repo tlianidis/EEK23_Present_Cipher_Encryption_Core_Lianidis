@@ -10,7 +10,7 @@ module sbox (
 
 //- Procedural Assignments------------------------------------------------------
 
-always @(data_i)
+always_comb
     case (data_i)
         4'h0 : data_o = 4'hC;
         4'h1 : data_o = 4'h5;
