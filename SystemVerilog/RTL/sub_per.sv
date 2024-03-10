@@ -6,8 +6,8 @@
 // single entity containing both of them
 //- Module IOs ----------------------------------------------------------------
 module sub_per(
-    output [63:0] data_o,
-    input [63:0] data_i
+    output [63:0] data_o,  // output of the sub_per layer
+    input [63:0] data_i    // input to the sub_per layer
     );
 
 //- Variables, Registers and Parameters ---------------------------------------

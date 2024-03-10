@@ -22,8 +22,10 @@ logic [79 : 0] key_next; // 80-bit register holding the key and updates of the k
 
 wire [63 : 0] round_key = key[79:16]; // 64-bit round-key. The round-keys are derived from the key register
                                        // current round-key is the 64 left most bits of the key register
+
 wire [63 : 0] sub_per_input = state^round_key; // 64-bit input to the substitution-permutation network
                                                // input to the Substitution-Permutation network is the cipher state xored with the round key
+                                               
 wire [63 : 0] sub_per_output; // 64-bit output of the substitution-permutation network
 wire [79 : 0] key_update_output; // 80-bit output of the keyupdate procedure. This value replaces the value of the key register
 

@@ -4,13 +4,13 @@
 
 //- Module IOs ----------------------------------------------------------------
 module sbox (
-    output logic [3:0] data_o,
-    input [3:0] data_i
+    output logic [3:0] data_o,   // output of the sbox layer
+    input [3:0] data_i          // input to the sbox layer
     );
 
 //- Procedural Assignments------------------------------------------------------
 
-always_comb                          // This always_comb block implements purely combinational logic
+always_comb                          // This always_comb block implements the substitution process of the algorithm, i.e. purely combinational logic
     unique case (data_i)             // Added unique keyword to ensure that there are no overlapping case items
         4'h0 : data_o = 4'hC;
         4'h1 : data_o = 4'h5;

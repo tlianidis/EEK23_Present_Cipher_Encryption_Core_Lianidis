@@ -7,8 +7,8 @@
 // this module implements those 16 S-Boxes using the sbox module
 //- Module IOs ----------------------------------------------------------------
 module substitution(
-    output [63:0] data_o,
-    input [63:0] data_i
+    output [63:0] data_o,  //output of the substitution layer
+    input [63:0] data_i   //input to the substitution layer
     ); 
 
 //- Variables, Registers and Parameters ---------------------------------------
@@ -16,7 +16,7 @@ module substitution(
 genvar j;
 
 //- Instantiations ------------------------------------------------------------
-
+//This generate block instantiates 16 sboxes
 generate
     for (j = 0; j < 16; j++)
     begin : boxes

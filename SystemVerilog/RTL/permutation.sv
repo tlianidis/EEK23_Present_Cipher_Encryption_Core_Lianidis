@@ -5,12 +5,12 @@
 
 //- Module IOs ----------------------------------------------------------------
 module permutation(
-    output [63:0] data_o,
-    input  [63:0] data_i
+    output [63:0] data_o,    // output of the permutation layer
+    input  [63:0] data_i    // input to the permutation layer
     );
 
 //- Continuous Assignments------------------------------------------------------
-
+// These assignments implement the bitwise permutations of the algorithm
 assign data_o[0 ] = data_i[0 ];
 assign data_o[16] = data_i[1 ];
 assign data_o[32] = data_i[2 ];

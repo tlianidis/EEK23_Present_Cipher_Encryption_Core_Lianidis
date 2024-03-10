@@ -6,15 +6,21 @@
 
 //- Test Bench ----------------------------------------------------------------
 module present_encryptor_top_tb;
+
 //- Variables, Registers and Parameters ---------------------------------------
-wire [63:0] data_o;
-logic [79:0] data_i;
-logic data_load;
-logic key_load;
-logic clk_i;
+
+wire [63:0] data_o;   // ciphertext will appear here
+logic [79:0] data_i;  // plaintext and key must be fed here
+logic data_load;      // when '1', first 64 bits of data_i will be loaded into state register
+logic key_load;       // when '1', data_i will be loaded into key register
+logic clk_i;         // clock signal
+
 //- Instantiations ------------------------------------------------------------
+
 present_encryptor_top DUT (.*);
+
 //- Behavioral Modelling -----------------------------------------------------
+
 initial
 begin
     $monitor($realtime,,"ps %h %h %h %h %h ",data_o,data_i,data_load,key_load,clk_i);
