@@ -10,8 +10,8 @@ module sbox (
 
 //- Procedural Assignments------------------------------------------------------
 
-always_comb
-    case (data_i)
+always_comb                          // This always_comb block implements purely combinational logic
+    unique case (data_i)             // Added unique keyword to ensure that there are no overlapping case items
         4'h0 : data_o = 4'hC;
         4'h1 : data_o = 4'h5;
         4'h2 : data_o = 4'h6;
