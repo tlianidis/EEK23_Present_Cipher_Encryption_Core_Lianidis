@@ -20,8 +20,10 @@ logic [4  : 0] round_counter_next; // 5-bit round-counter (from 1 to 31) in the 
 logic [79 : 0] key; // 80-bit register holding the key and updates of the key in the current clock cycle
 logic [79 : 0] key_next; // 80-bit register holding the key and updates of the key in the next clock cycle
 
-wire [63 : 0] round_key; // 64-bit round-key. The round-keys are derived from the key register
-wire [63 : 0] sub_per_input; // 64-bit input to the substitution-permutation network
+wire [63 : 0] round_key = key[79:16]; // 64-bit round-key. The round-keys are derived from the key register
+                                       // current round-key is the 64 left most bits of the key register
+wire [63 : 0] sub_per_input = state^round_key; // 64-bit input to the substitution-permutation network
+                                               // input to the Substitution-Permutation network is the cipher state xored with the round key
 wire [63 : 0] sub_per_output; // 64-bit output of the substitution-permutation network
 wire [79 : 0] key_update_output; // 80-bit output of the keyupdate procedure. This value replaces the value of the key register
 
@@ -35,14 +37,10 @@ key_update present_cipher_key_update(.data_o(key_update_output),.data_i(key),.*)
     // instantiation of the key-update procedure
     // this module is used 31 times iteratively
     
-//- Continuous Assignments------------------------------------------------------
-
-assign round_key = key[79:16]; // current round-key is the 64 left most bits of the key register
-
-assign sub_per_input = state^round_key; // input to the Substitution-Permutation network is the cipher state xored with the round key
+//- Continuous Assignment------------------------------------------------------
 
 assign data_o = sub_per_input; // the output of the cipher will finally be one of the inputs to the Substitution-Permutation network.
-                             // output will be valid when round-counter is 31
+                             // output will be valid when round-counter is 0
 
 //- Behavioral Modelling -----------------------------------------------------
 
