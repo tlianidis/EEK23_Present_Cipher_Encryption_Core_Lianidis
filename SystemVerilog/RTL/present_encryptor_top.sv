@@ -55,8 +55,8 @@ end
 
 always_comb                    // This always_comb block implements purely combinational logic 
 begin
-    if(key_load)               // Loading the key
-    begin
+    unique if(key_load)               // Loading the key
+    begin                            // Added unique keyword to ensure that there is a single match
         key_next = data_i;
         state_next = state;
         round_counter_next = round_counter;
