@@ -18,25 +18,23 @@ present_encryptor_top DUT (.*);
 initial
 begin
     $monitor($realtime,,"ps %h %h %h %h %h ",data_o,data_i,data_load,key_load,clk_i);
-    #0   data_i = 80'h00000000_00000000_0000 ; key_load = 1; // Key
-    #10  data_i = 64'h00000000_00000000      ; key_load = 0; data_load = 1; // Plaintext
-    #10  data_load = 0;
-    #330 data_i = 80'hFFFFFFFF_FFFFFFFF_FFFF ; key_load = 1; // Key
-    #10  data_i = 64'h00000000_00000000      ; key_load = 0; data_load = 1; // Plaintext
-    #10  data_load = 0;
-    #330 data_i = 80'h00000000_00000000_0000 ; key_load = 1; // Key
-    #10  data_i = 64'hFFFFFFFF_FFFFFFFF      ; key_load = 0; data_load = 1; // Plaintext
-    #10  data_load = 0;
-    #330 data_i = 80'hFFFFFFFF_FFFFFFFF_FFFF ; key_load = 1; // Key
-    #10  data_i = 64'hFFFFFFFF_FFFFFFFF      ; key_load = 0; data_load = 1; // Plaintext
-    #10  data_load = 0;
-    #330 $finish;
+    #0   data_i = 80'h00000000_00000000_0000 ; key_load = 1; clk_i = 1'b0; //Loading the key and clk_i initialization
+    #10  data_i = 64'h00000000_00000000      ; key_load = 0; data_load = 1; //Loading the plaintext
+    #10  data_load = 0;                                                     //Starting normal operation of the circuit
+    #330 data_i = 80'hFFFFFFFF_FFFFFFFF_FFFF ; key_load = 1;                // Loading the key
+    #10  data_i = 64'h00000000_00000000      ; key_load = 0; data_load = 1; // Loading the plaintext
+    #10  data_load = 0;                                                     //Starting normal operation of the circuit
+    #330 data_i = 80'h00000000_00000000_0000 ; key_load = 1;                // Loading the key
+    #10  data_i = 64'hFFFFFFFF_FFFFFFFF      ; key_load = 0; data_load = 1; // Loading the plaintext
+    #10  data_load = 0;                                                     //Starting normal operation of the circuit
+    #330 data_i = 80'hFFFFFFFF_FFFFFFFF_FFFF ; key_load = 1;                // Loading the key
+    #10  data_i = 64'hFFFFFFFF_FFFFFFFF      ; key_load = 0; data_load = 1; // Loading the plaintext
+    #10  data_load = 0;                                                     //Starting normal operation of the circuit
+    #330 $finish;                                                           //Finish simulation
 end
 
-initial
-begin
-    clk_i = 1'b0;
-    forever #5 clk_i = ~clk_i;
-end
+always                  // Generation of clk_i at 100 GHz
+    #5 clk_i = ~clk_i;
+
 //-----------------------------------------------------------------------------
 endmodule
