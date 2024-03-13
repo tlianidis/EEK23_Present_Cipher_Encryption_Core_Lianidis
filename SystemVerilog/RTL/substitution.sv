@@ -16,7 +16,7 @@ module substitution(
 genvar j;
 
 //- Instantiations ------------------------------------------------------------
-//This generate block instantiates 16 sboxes
+//This generate block instantiates 16 S-boxes
 generate
     for (j = 0; j < 16; j++)
     begin : boxes

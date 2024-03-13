@@ -32,7 +32,7 @@ wire [79 : 0] key_update_output; // 80-bit output of the keyupdate procedure. Th
 //- Instantiations ------------------------------------------------------------
 
 sub_per present_cipher_sp(.data_o(sub_per_output),.data_i(sub_per_input)); 
-    // instantion of  substitution and permutation module
+    // instantiation of  substitution and permutation module
     // this module is used 31 times iteratively
 
 key_update present_cipher_key_update(.data_o(key_update_output),.data_i(key),.*); 
