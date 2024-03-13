@@ -19,7 +19,23 @@ logic clk_i;         // clock signal
 
 present_encryptor_top DUT (.*);
 
+//- Assertions ----------------------------------------------------------------
+
+assert property(@(posedge clk_i) key_load |-> !data_load) $display("Key_load is 1 and data_load is 0. That is correct.");
+else $error("Both key_load and data_load are 1. That is an error.");
+
+assert property(@(posedge clk_i) data_load |-> !key_load) $display("Data_load is 1 and key_load is 0. That is correct.");
+else $error("Both key_load and data_load are 1. That is an error.");
+
+assert property(@(posedge clk_i) data_load |=> !data_load) $display("Data_load is 1 and on the next clock cycle is 0. That is correct.");
+else $error("Data_load is 1 and on the next clock cycle it is still 1. That is an error.");
+
+assert property(@(posedge clk_i) key_load |=> !key_load) $display("Key_load is 1 and on the next clock cycle is 0. That is correct.");
+else $error("Key_load is 1 and on the next clock cycle it is still 1. That is an error.");
+
+
 //- Behavioral Modelling -----------------------------------------------------
+
 
 
 initial
